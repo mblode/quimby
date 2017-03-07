@@ -9,6 +9,7 @@ var gulp = require('gulp'),
   cssnano = require('cssnano'),
   browserSync = require('browser-sync'),
   uncss = require('gulp-uncss'),
+  rename = require('gulp-rename'),
   folder = {
     src: 'src/',
     build: 'public/assets/',
@@ -16,7 +17,7 @@ var gulp = require('gulp'),
 
 gulp.task('browser-sync', function () {
   browserSync({
-    proxy:  'https://quimby.dev',
+    proxy:  'https://childwise.dev',
   });
 });
 
@@ -63,6 +64,8 @@ gulp.task('watch', ['browser-sync'], function (){
   gulp.watch(folder.src + 'js/**/*', ['js']);
   // css changes
   gulp.watch(folder.src + 'scss/**/*', ['css']);
+
+  gulp.watch("**/*.html").on("change", browserSync.reload);
 });
 
 // default task
